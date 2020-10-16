@@ -76,22 +76,14 @@ func startServer(ctx *cli.Context) {
 	}
 
 	now := time.Now().UTC()
-	next := time.Date(2020, time.October, 22, 23, 55, 0, 0, time.UTC)
+	next := time.Date(2020, time.October, 22, 23, 59, 0, 0, time.UTC)
 	t := time.NewTimer(next.Sub(now))
 	<-t.C
 	log.Infof("snapshot start: %v", time.Now().UTC().String())
 	for {
 		// 以下为定时执行的操作
-		_, err := sdk.WaitForGenerateBlock(60*time.Second, 1)
-		if err != nil {
-			log.Errorf("sdk.WaitForGenerateBlock, err: %s", err)
-		}
-		blockHeight, err := sdk.GetCurrentBlockHeight()
-		if err != nil {
-			log.Errorf("GetCurrentBlockHeight error:%s", err)
-		}
 		now := time.Now().UTC()
-		f, err := os.Create(fmt.Sprintf("%s-%d", now.String(), blockHeight))
+		f, err := os.Create(fmt.Sprintf("data/%s", now.String()))
 		w := bufio.NewWriter(f)
 		result, err := TotalReserve(sdk, flashAddress)
 		if err != nil {
@@ -105,7 +97,7 @@ func startServer(ctx *cli.Context) {
 		}
 		w.Flush()
 		f.Close()
-		if now.After(next.Add(10 * time.Minute)) {
+		if now.After(next.Add(2 * time.Minute)) {
 			log.Infof("Done")
 			return
 		}
