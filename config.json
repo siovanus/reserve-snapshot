@@ -1,0 +1,19 @@
+{
+  "json_rpc_address": "http://polaris2.ont.io:20336",
+  "flash_pool_address": "03d3d6e5fc1aa8fc2dac4a2d78ad96126cbf84c4",
+  "asset_map": {
+    "f2a0a4ea9a6c6ba6e23be0f58c75a5e984f9a712": "pWBTC",
+    "1db77d641787a84d1032dc1c4eae8e4cb8f934a2": "prenBTC",
+    "45f93dada46c736d2c8702407e57e23ce51878d2": "pUSDC",
+    "cc8ca2a1e10ff02feb6313b3fa347d08a5981b22": "ONTd",
+    "c2edda6cde43dd4e00d3e5053306f8fb4ee52ce3": "WING",
+    "2a8f0267c38eecffd1c0823fae777e0237265ee9": "pETH",
+    "803a0fed1fe42befc30f3ffca46923fafd276f0d": "pDAI",
+    "771e4d3a9ca2d1135a88ee3f37fe65e602e72f45": "pUSDT",
+    "5daf48bd1aac8bc24e2b98ba426578e76f9abfcc": "pSUSD",
+    "d74c24121a2fab40dfb50369a3f0c933965a2a14": "pNEO",
+    "13d95823da086c1bc6e5dd365a3f459c421eda77": "pOKB",
+    "c1faf0767fadeea5720ca743ab80113a3355e69c": "pUNI"
+  },
+  "scan_interval": 1
+}
