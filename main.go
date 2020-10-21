@@ -76,7 +76,7 @@ func startServer(ctx *cli.Context) {
 	}
 
 	now := time.Now().UTC()
-	next := time.Date(2020, time.October, 22, 23, 59, 0, 0, time.UTC)
+	next := time.Date(2020, time.October, 21, 23, 59, 0, 0, time.UTC)
 	t := time.NewTimer(next.Sub(now))
 	<-t.C
 	log.Infof("snapshot start: %v", time.Now().UTC().String())
@@ -84,6 +84,9 @@ func startServer(ctx *cli.Context) {
 		// 以下为定时执行的操作
 		now := time.Now().UTC()
 		f, err := os.Create(fmt.Sprintf("data/%s", now.String()))
+		if err != nil {
+			log.Errorf("os.Create, err: %s", err)
+		}
 		w := bufio.NewWriter(f)
 		result, err := TotalReserve(sdk, flashAddress)
 		if err != nil {
