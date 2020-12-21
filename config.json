@@ -1,17 +1,5 @@
 {
   "json_rpc_address": "http://dappnode2.ont.io:20336",
-  "flash_pool_address": "92ef5620a161977d58e16aaca2335a447d8308d9",
-  "asset_map": {
-    "f2a0a4ea9a6c6ba6e23be0f58c75a5e984f9a712": "pWBTC",
-    "1db77d641787a84d1032dc1c4eae8e4cb8f934a2": "prenBTC",
-    "45f93dada46c736d2c8702407e57e23ce51878d2": "pUSDC",
-    "cc8ca2a1e10ff02feb6313b3fa347d08a5981b22": "ONTd",
-    "c2edda6cde43dd4e00d3e5053306f8fb4ee52ce3": "WING",
-    "2a8f0267c38eecffd1c0823fae777e0237265ee9": "pETH",
-    "803a0fed1fe42befc30f3ffca46923fafd276f0d": "pDAI",
-    "771e4d3a9ca2d1135a88ee3f37fe65e602e72f45": "pUSDT",
-    "b2578ee6370f932dbc3e9ab67779c9a001a1add7": "pSUSD",
-    "093c94d817ef0e1b5e37898f2d43fd63767d2fa6": "pNEO",
-    "4fce156bbcc206eeede236fa13bdb721aaa9b70e": "pUNI"
-  }
+  "flash_pool_address": "573b96a46c0209484b5dc3d1c399bfc9c6da3635",
+  "month": 12
 }

@@ -31,6 +31,7 @@ import (
 	"github.com/siovanus/reserve-snapshot/config"
 	"github.com/siovanus/reserve-snapshot/log"
 	"github.com/urfave/cli"
+	"github.com/wing-groups/wing-contract-tools/contracts"
 )
 
 func setupApp() *cli.App {
@@ -76,7 +77,7 @@ func startServer(ctx *cli.Context) {
 	}
 
 	now := time.Now().UTC()
-	next := time.Date(2020, time.October, 21, 23, 59, 0, 0, time.UTC)
+	next := time.Date(2020, time.Month(config.DefConfig.Month), 21, 23, 59, 0, 0, time.UTC)
 	t := time.NewTimer(next.Sub(now))
 	<-t.C
 	log.Infof("snapshot start: %v", time.Now().UTC().String())
@@ -140,10 +141,13 @@ func TotalReserve(sdk *ontology_go_sdk.OntologySdk, flashAddress common.Address)
 	}
 	result := make(map[string]string)
 	for _, address := range allMarkets {
-		name := config.DefConfig.AssetMap[address.ToHexString()]
+		name, err := getUnderlyingName(sdk, address)
+		if err != nil {
+			return nil, fmt.Errorf("TotalReserve, getUnderlyingName error: %s", err)
+		}
 		reserveBalance, err := getTotalReserves(sdk, address)
 		if err != nil {
-			return nil, fmt.Errorf("TotalReserve, this.getTotalReserves error: %s", err)
+			return nil, fmt.Errorf("TotalReserve, getTotalReserves error: %s", err)
 		}
 		result[name] = reserveBalance.String()
 	}
@@ -166,4 +170,14 @@ func getTotalReserves(sdk *ontology_go_sdk.OntologySdk, contractAddress common.A
 		return nil, fmt.Errorf("getTotalReserves, source.NextI128 error")
 	}
 	return amount.ToBigInt(), nil
+}
+
+func getUnderlyingName(sdk *ontology_go_sdk.OntologySdk, contractAddress common.Address) (string, error) {
+	method := "underlyingName"
+	params := []interface{}{}
+	res, err := contracts.PreExecuteString(sdk, contractAddress, method, params)
+	if err != nil {
+		err = fmt.Errorf("UnderlyingName: %s", err)
+	}
+	return res, err
 }

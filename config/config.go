@@ -15,10 +15,9 @@ var DefConfig *Config
 
 //Config object used by ontology-instance
 type Config struct {
-	JsonRpcAddress   string            `json:"json_rpc_address"`
-	FlashPoolAddress string            `json:"flash_pool_address"`
-	AssetMap         map[string]string `json:"asset_map"`
-	ScanInterval     uint64            `json:"scan_interval"`
+	JsonRpcAddress   string `json:"json_rpc_address"`
+	FlashPoolAddress string `json:"flash_pool_address"`
+	Month            int    `json:"month"`
 }
 
 func NewConfig(fileName string) (*Config, error) {
